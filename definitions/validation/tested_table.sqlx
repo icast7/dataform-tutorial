@@ -1,0 +1,16 @@
+config {
+    type: "table",
+    assertions: {
+        uniqueKey: ["EmployeeID"],
+        nonNull: ["EmployeeID", "FirstName"],
+        rowConditions: [
+            'HireDate is null or HireDate > "2020-01-01"',
+            'Email is not null and Email like "%@%.%"'
+        ]
+    }
+}
+
+SELECT
+  *
+FROM
+  dataform_second_workspace.tablewithdates
