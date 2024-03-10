@@ -1,16 +1,23 @@
 config {
-    type: "incremental"
+    type: "incremental",
+    description: "Dataform creates a temporary incremental_example that updates incrementally, and deletes the table after 30 days from its creation"
 }
+
+SELECT
+  DATE(timestamp) AS date,
+  event_name
+FROM
+  dataform.tablewithtimestamp
+  ${
+      when(
+          incremental(), `WHERE timestamp > (SELECT max(date) FROM ${self()})`
+      )
+  }
 
 post_operations {
-    delete FROM ${self()} WHERE date < (date_add(Day,-30, CURRENT_DATE))
-}
-
-SELECT date(timestamp) as date,
-event_name
-FROM tablewithtimestamp
-${
-    when (
-        incremental(), `WHERE timestamp > (SELECT max(date) FROM ${self()})`
-    )
+  DELETE
+  FROM
+    ${self()}
+  WHERE
+    date < (DATE_ADD(Day,-30, CURRENT_DATE))
 }

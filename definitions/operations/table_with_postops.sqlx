@@ -1,0 +1,19 @@
+config {
+    type: "table"
+}
+
+SELECT
+  *
+FROM
+  dataform.tablewithtimestamp
+
+post_operations {
+  GRANT
+  SELECT
+  ON
+    ${self()} TO "fakegroup1@fakeexample.com"; 
+  GRANT
+  SELECT
+  ON
+    ${self()} TO "fakegroup2@fakeexample.com";
+}
