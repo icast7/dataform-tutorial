@@ -1,0 +1,14 @@
+config {
+    type: "table",
+    description: "This table is an example",
+    columns: {
+        fruit: "Name of the fruit",
+        count: "ID of the user"
+    }
+}
+
+SELECT
+  fruit,
+  count
+FROM
+  ${ref("quickstart-table")}

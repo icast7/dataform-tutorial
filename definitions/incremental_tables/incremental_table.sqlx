@@ -1,0 +1,16 @@
+config {
+    type: "incremental",
+    description: "Incremental table with new rows"
+}
+
+SELECT
+  DATE(timestamp) AS date,
+  event_name
+FROM
+  dataform.tablewithtimestamp
+  ${
+      when(
+          incremental(), `WHERE date(timestamp) > (select max(date) FROM  ${self()})`
+
+      )
+  }

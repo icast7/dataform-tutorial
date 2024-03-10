@@ -1,0 +1,8 @@
+config {
+    type: "table"
+}
+
+SELECT
+  *
+FROM
+  dataform.tablewithtimestamp
