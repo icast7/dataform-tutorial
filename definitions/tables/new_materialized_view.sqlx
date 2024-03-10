@@ -1,0 +1,9 @@
+config {
+    type: "view",
+    materialized: true
+}
+
+SELECT
+  *
+FROM
+  ${ref("quickstart-table")}

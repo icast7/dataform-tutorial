@@ -1,0 +1,15 @@
+config {
+    type: "incremental"
+}
+
+SELECT
+  timestamp,
+  event_name
+FROM
+  dataform.tablewithtimestamp
+  ${
+      when(
+          incremental(),
+          `WHERE timestamp > (select max(timestamp) from ${self()})`
+      )
+  }

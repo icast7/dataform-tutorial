@@ -1,0 +1,14 @@
+config {
+    type: "incremental"
+}
+
+SELECT
+  CURRENT_DATE() AS snapshot_date,
+  fruit,
+  count FROM `dataform.quickstart-table`
+  ${
+      when(
+          incremental(),
+          `WHERE snapshot_date > (SELECT max(snapshot_date) FROM ${self()})`
+      )
+  }
