@@ -1,0 +1,16 @@
+config {
+    type: "incremental"
+}
+
+post_operations {
+    delete FROM ${self()} WHERE date < (date_add(Day,-30, CURRENT_DATE))
+}
+
+SELECT date(timestamp) as date,
+event_name
+FROM tablewithtimestamp
+${
+    when (
+        incremental(), `WHERE timestamp > (SELECT max(date) FROM ${self()})`
+    )
+}
