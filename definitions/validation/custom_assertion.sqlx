@@ -1,0 +1,12 @@
+config {
+    type: "assertion"
+}
+
+SELECT
+  *
+FROM
+  ${ref("quickstart-table")}
+WHERE
+  fruit = 'bananas'
+  OR COUNT = 5
+  OR COUNT = 0

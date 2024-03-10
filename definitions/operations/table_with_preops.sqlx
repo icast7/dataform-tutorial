@@ -1,0 +1,15 @@
+config {
+    type: "table"
+}
+
+SELECT
+  *
+FROM
+  dataform.tablewithtimestamp
+
+pre_operations {
+  INSERT INTO
+    `dataform.tablewithtimestamp` (event_name)
+  VALUES
+    ("new_event");
+}
