@@ -1,0 +1,16 @@
+config {
+    type: "operations",
+    description: "Shows how semicolon used to separate multiple SQL operations"
+}
+
+  -- Remove entries with typos
+DELETE
+FROM
+  dataform.tablewithtimestamp
+WHERE
+  event_name = 'fist_event';
+DELETE
+FROM
+  dataform.tablewithtimestamp
+WHERE
+  event_name = 'hola_action';
