@@ -1,11 +1,14 @@
 config {
-    type: "incremental"
+    type: "incremental",
+    description: "Dataform creates snapshots_table with a snapshot of dataform.quickstart-table at the specified date"
 }
 
 SELECT
   CURRENT_DATE() AS snapshot_date,
   fruit,
-  count FROM `dataform.quickstart-table`
+  count
+FROM
+  `dataform.quickstart-table`
   ${
       when(
           incremental(),

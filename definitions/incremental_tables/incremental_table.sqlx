@@ -1,6 +1,6 @@
 config {
     type: "incremental",
-    description: "Incremental table with new rows"
+    description: " Dataform appends a new row to the incremental_table for each new date"
 }
 
 SELECT
@@ -11,6 +11,5 @@ FROM
   ${
       when(
           incremental(), `WHERE date(timestamp) > (select max(date) FROM  ${self()})`
-
       )
   }
