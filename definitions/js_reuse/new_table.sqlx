@@ -1,0 +1,11 @@
+config {
+    type: "table",
+    name: "new_table_with_constants"
+}
+
+SELECT
+  *
+FROM
+  dataform_second_workspace.tablewithdates
+WHERE
+  HireDate > ${constants.first_date}
