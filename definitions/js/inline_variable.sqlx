@@ -1,0 +1,12 @@
+js {
+    const foo = 1;
+
+    function bar(number) {
+        return number + 1;
+    }
+}
+
+SELECT
+  ${foo} AS one,
+  ${bar(foo)} AS two,
+  -- ${bar(9)} AS three - keeps previous result in memory
